@@ -54,6 +54,7 @@ while True:
         #Saliendo del programa
 
     while True:
+
         salir = input("Deseas salir del programa (si/no): ").lower()
 
         if salir == "si":
