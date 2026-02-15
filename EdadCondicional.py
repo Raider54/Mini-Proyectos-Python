@@ -1,16 +1,35 @@
-print("AQUÍ PUEDE COMPROBAR SU ES MAYOR O MENOR DE EDAD!")
+print("😎Comprobación de edad😎".upper())
 
 while True:
 
-    edad = int(input("Ingrese su edad: "))
+    try:
+
+        edad = int(input("Dame tu edad: "))
+
+    except ValueError:
+        print("Edad no valida...!")
+        continue
 
     if edad >= 18:
-        print("Usted es mayor de edad!")
+            print("Eres mayor de edad!")
 
-    elif 0 < edad < 18:
-        print("Usted es menor de edad!")
+    elif edad >= 15 and edad <= 17:
+            print("Todavía estas adolescente!")
 
-    salir = input("Deseas salir del programa? (s/n): ")
-    if salir == "s":
-        print("Hasta luego!")
-        break
+    else:
+            print("Eres menor de edad!")
+
+    while True:
+
+        salir = input("Deseas salir? (si/no): ").lower()
+
+        if salir == "si":
+            print("Saliendo del programa...!")
+            exit()
+
+        elif salir == "no":
+            print("Continuemos...!")
+            break
+        
+        else:
+            print("Escribe Si o No para salir...!")
