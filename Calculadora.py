@@ -4,50 +4,65 @@ print("🧮=====calculadora=====🧮".upper())
 
 while True:
 
-    a = float(input("Ingrese el primer numero: "))
-    b = float(input("Ingrese el segundo numero: "))
+    try:
 
-    print("-" * 50)
+        a = float(input("Ingrese el primer numero: "))
+        b = float(input("Ingrese el segundo numero: "))
 
-    #Operaciones aritméticos disponibles
+        print("-" * 50)
 
-    print("operaciones disponibles👇".title())
-    print("1. Suma")
-    print("2. Resta")
-    print("3. Multiplicacion")
-    print("4. Division")
-    print("5. Modulo")
+        #Operaciones aritméticos disponibles
 
-    print("-" * 50)
+        print("operaciones disponibles👇".title())
+        print("1. Suma")
+        print("2. Resta")
+        print("3. Multiplicacion")
+        print("4. Division")
+        print("5. Modulo")
 
-    #Pidiendo al usuario que escoja una de las 4 opciones
+        print("-" * 50)
 
-    opcion = input("Seleccione una opcion del 1-4: ")
+        #Pidiendo al usuario que escoja una de las 4 opciones
 
-    if opcion == "1":
-        print(f"El resultado de la suma es: {a + b}")
+        opcion = input("Seleccione una opcion del 1-5: ")
 
-    elif opcion == "2":
-        print(f"El resultado de la resta es: {a - b}")
+        if opcion == "1":
+            print(f"El resultado de la suma es: {a + b}")
 
-    elif opcion == "3":
-        print(f"El resultado de la multiplicación es: {a * b:.2f}")
+        elif opcion == "2":
+            print(f"El resultado de la resta es: {a - b}")
 
-    elif opcion == "4":
-        if b != 0:
-            print(f"El resultado de la division es: {a / b:.2f}")
+        elif opcion == "3":
+            print(f"El resultado de la multiplicación es: {a * b:.2f}")
+
+        elif opcion == "4":
+            if b != 0:
+                print(f"El resultado de la division es: {a / b:.2f}")
+            else:
+                print("No se puede dividir por 0")
+
+        elif opcion == "5":
+            print(f"El resultado del modulo es: {a % b}")
+
         else:
-            print("No se puede dividir por 0")
+            print("Error operación incorrecta ❌")
 
-    elif opcion == "5":
-        print(f"El resultado del modulo es: {a % b}")
+    except ValueError:
+        print("Error, solo numeros...!")
+        continue
 
-    else:
-        print("Error operación incorrecta ❌")
+        #Saliendo del programa
 
-    #Saliendo del programa
+    while True:
+        salir = input("Deseas salir del programa (si/no): ").lower()
 
-    salir = input("Deseas salir del programa (s/n): ").lower()
-    if salir == "s":
-        print("🧮gracias por usar la calculadora🧮".title())
-        break
+        if salir == "si":
+            print("🧮 Gracias por usar la calculadora 🧮".title())
+            exit()
+
+        elif salir == "no":
+            print("Continuemos...!")
+            break
+
+        else:
+            print("Por favor escribe, Si o No...!")
