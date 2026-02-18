@@ -1,12 +1,19 @@
 # Temperatura
 
 while True:
-    temperatura = int(input("Ingrese la temperatura: "))
+    
+    try:
+        temperatura = int(input("Ingrese la temperatura: "))
+    
+    except ValueError:
+        print("Solo numeros...")
+        continue
+
     if temperatura >= 30:
-        print("Hace mucho calor!🥵")
+            print("Hace mucho calor!🥵")
 
     elif 0 < temperatura < 30:
-        print("Hace un clima frio!🥶")
+            print("Hace un clima frio!🥶")
 
     salir = input("Deseas salir? (s/n): ").lower()
 
