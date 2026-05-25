@@ -1,48 +1,81 @@
-#Sistema de control de inventario 
+import json
+print("----bienvenido al sistema de control de inventario----".upper()) #Bienvenida
 
-print("🛒bienvenido al sistema de control de inventario🛒".title())
+inventario = [] #Inventario general 
 
 while True:
 
-    #Pidiéndole al usuario que ingrese el producto, cantidad y valor unitario
+    print("\nmenu de opciones".upper()) #Menu de opciones
+    print("1. Registrar Producto")
+    print("2. Visualizar inventario")
+    print("3. Eliminar Producto")
+    print("4. Salir")
 
-    producto = input("Ingrese los producto: ")
-    cantidad = int(input("Ingrese la cantidad: "))
-    precio_unitario = float(input("Ingrese el precio unitario en $: "))
+    opcion = input("Elige una opcion: ") #Le pedimos al usuario que ingres una opcion valida
 
-    valor_total = cantidad * precio_unitario
+    if opcion == "1": #Empezamos con las condiciones junto con Try y Except para evitar posibles errores
+        nombre_producto = input("Ingresa el nombre del producto: ")
+        try: #Usamos Try para evitar errores de letras.
+            cantidad = int(input("Cantidad a Ingresar: "))
+            precio_unitario = float(input("Precio Unitario: ")) 
+        except ValueError:
+            print("Solo numeros...")
+            continue
 
-    print("-" * 50)
+        datos_compra = { #Guardamos toda la information dentro del dict
+        "nombre_producto" : nombre_producto,
+        "cantidad" : cantidad,
+        "precio_unitario" : precio_unitario,
+        "total" : cantidad * precio_unitario
+    }
+        inventario.append(datos_compra)
+        print("Producto registrado con éxito!")
 
-    print("\nResumen de la operación 📑".upper())
-    print(f"➡️ Los productos agregados son: {[producto.title()]}")
-    print(f"➡️ Cantidad agregada: {cantidad}")
-    print(f"➡️ Precio unitario: ${precio_unitario}")
-    print(f"💰 Valor total: ${valor_total}")
+    elif opcion == "2":
+        if inventario == []: #Si inventario vacio no mostramos nada, solo el print
+            print("Inventario vacio...")
+        else:
+            for elemento in inventario: #Con for mostraremos los productos ingresados en el dict
+                 print("-" * 30)
+                 print(f"Nombre del producto: {elemento['nombre_producto']}".title().strip())
+                 print(f"Cantidad ingresada: {elemento['cantidad']}")
+                 print(f"Precio unitario: {elemento['precio_unitario']:.2f}$")
+                 print(f"Precio total: {elemento['total']:.2f}$")
+                 print("-" * 30)
+                 print(json.dumps(inventario, indent=3, ensure_ascii=False))
 
-    print("-" * 50)
+    elif opcion == "3":
+        if inventario == []:
+            print("Inventario vacio...")
+            continue
+        else: #Al tener un producto a eliminar saltamos a este else
+            print("Productos disponibles: ")
+            for elemento in inventario:
+                print(f"Producto: {elemento['nombre_producto']}")
+            eliminar = input("Ingresa el nombre del producto a eliminar: ").lower()
+        
+            if eliminar == "":
+                print("No se ingreso un producto...")
+                continue
+            encontrado = False
+            for elemento in inventario:
+                if elemento['nombre_producto'].lower() == eliminar:
+                    inventario.remove(elemento)
+                    print(f"Producto '{eliminar}' eliminado con exito!")
+                    encontrado = True
+                    break
 
-    #Pidiendo al usuario otros productos
+            if not encontrado:
+                print("Producto no encontrado en el inventario...")
+            
+    elif opcion == "4":
+        salir = input("Salir? (s/n): ").lower()
 
-    producto2 = input("Otros productos: ")
-    cantidad2 = int(input("Ingrese la cantidad: "))
-    precio_unitario2 = float(input("Ingrese el precio unitario en $: "))
+        if salir == "s":
+            print("Cerrando el sistema....")
+            break
+        else:
+            print("Continuando...")
 
-    valor_total2 = cantidad2 * precio_unitario2
-
-    print("-" * 50)
-
-    print("\nResumen de la operación 📑".upper())
-    print(f"➡️ Otros productos agregados son: {[producto2.title()]}")
-    print(f"➡️ Cantidad agregada: {cantidad2}")
-    print(f"➡️ Precio unitario: ${precio_unitario2}")
-    print(f"💰 Valor total: ${valor_total2}")
-
-    print("-" * 50)
-
-    #Saliendo del programa con el bucle while o regresando al inicio 
-
-    salir = input("Deseas salir del programa? (s/n): ".lower())
-    if salir == "s":
-        print("🛒gracias por usar el sistema de gestión de inventario🛒".title())
-        break
+    else:
+        print("opcion no valida...❌")
