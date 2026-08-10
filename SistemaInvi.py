@@ -30,7 +30,7 @@ while True:
         }
 
     elif opcion == "2":
-        if inventario_productos == {}:
+        if not inventario_productos:
             print("El inventario está vacío. No hay productos para eliminar. 🚫")
         else:
             eliminar_producto = input("Que producto desea eliminar?: ").lower().strip()
