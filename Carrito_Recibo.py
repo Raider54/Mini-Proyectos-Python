@@ -1,28 +1,24 @@
-carrito = []
+inventario = {
+    "manzana" : 1.5,
+    "pan": 2.0,
+    "leche" : 1.2
+}
 
-while True:
-    producto = input("Agregar producto o escriba 'Finalizar' para salir: ").lower()
+print("---LISTA DE PRODUCTOS DISPONIBLES---")
+for producto in inventario:
+        print(producto)
 
-    if producto == "finalizar":
-        print("Programa terminado")
-        break
+producto = input("Escribe un producto: ").lower()
 
-    else:
-        carrito.append(producto)
-        print("Producto agregado!")
+if producto in inventario:
+        cantidad = int(input("Cuantas unidades desea?: "))
+        precio = float(input("Por favor ingrese el precio: "))
+        total = precio * cantidad
+else:
+        print("Lo siento el producto no existe")
 
-        continuar = input("Continuar agregando? (s/n): ").lower()
-
-        if continuar == "s":
-            print("Continuando")
-            continue
-
-        else:
-            print("Programa finalizado!")
-            break
-
-print("---RECIBO---")
-for producto in carrito:
-    print(f"Producto: {producto.capitalize()}")
-
-print(f"Total productos agregados: {len(carrito)}")
+print("---RESUMEN DE COMPRA---")
+print(f"Producto: {producto}")
+print(f"Cantidad adquirida: {cantidad}")
+print(f"Precio: {precio}")
+print(f"Total a pagar: {total}")
