@@ -59,7 +59,7 @@ while True:
 
         if salir == "si":
             print("🧮 Gracias por usar la calculadora 🧮".title())
-            exit()
+            
 
         elif salir == "no":
             print("Continuemos...!")
