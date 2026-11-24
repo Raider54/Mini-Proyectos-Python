@@ -1,18 +1,16 @@
-#Calculadora 
+# Calculadora
 
 print("🧮=====calculadora=====🧮".upper())
 
 while True:
 
     try:
-
         a = float(input("Ingrese el primer numero: "))
         b = float(input("Ingrese el segundo numero: "))
 
         print("-" * 50)
 
-        #Operaciones aritméticos disponibles
-
+        # Operaciones aritméticas disponibles
         print("operaciones disponibles👇".title())
         print("1. Suma")
         print("2. Resta")
@@ -22,8 +20,7 @@ while True:
 
         print("-" * 50)
 
-        #Pidiendo al usuario que escoja una de las 4 opciones
-
+        # Pidiendo al usuario que escoja una de las 5 opciones
         opcion = input("Seleccione una opcion del 1-5: ")
 
         if opcion == "1":
@@ -42,7 +39,10 @@ while True:
                 print("No se puede dividir por 0")
 
         elif opcion == "5":
-            print(f"El resultado del modulo es: {a % b}")
+            if b != 0:
+                print(f"El resultado del modulo es: {a % b}")
+            else:
+                print("No se puede calcular el modulo por 0")
 
         else:
             print("Error operación incorrecta ❌")
@@ -51,19 +51,17 @@ while True:
         print("Error, solo numeros...!")
         continue
 
-        #Saliendo del programa
-
+    # Saliendo del programa
     while True:
-
         salir = input("Deseas salir del programa (si/no): ").lower()
 
         if salir == "si":
             print("🧮 Gracias por usar la calculadora 🧮".title())
+            exit() # Termina todo el programa por completo
             
-
         elif salir == "no":
             print("Continuemos...!")
-            break
+            break  # Sale de esta pregunta y regresa a la calculadora
 
         else:
             print("Por favor escribe, Si o No...!")
